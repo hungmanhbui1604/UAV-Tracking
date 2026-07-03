@@ -19,7 +19,7 @@ def parse_args():
     parser.add_argument("--imgsz", type=int, default=1280, help="Target image resolution")
     parser.add_argument("--conf", type=float, default=0.001, help="Confidence threshold")
     parser.add_argument("--iou", type=float, default=0.7, help="NMS IoU threshold")
-    parser.add_argument("--max-det", "--max_det", dest="max_det", type=int, default=1000, help="Maximum detections per image")
+    parser.add_argument("--max-det", "--max_det", dest="max_det", type=int, default=300, help="Maximum detections per image")
     parser.add_argument("--device", default="0", help="Computing device (e.g., '0' or 'cpu')")
     parser.add_argument("--workers", type=int, default=8, help="Number of dataloader workers")
     parser.add_argument("--project", type=str, default=None, help="Save project directory")
@@ -162,5 +162,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

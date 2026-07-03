@@ -27,7 +27,7 @@ def parse_args():
     parser.add_argument("--hsv-h", "--hsv_h", dest="hsv_h", type=float, default=0.015, help="Image HSV-Hue augmentation fraction")
     parser.add_argument("--hsv-s", "--hsv_s", dest="hsv_s", type=float, default=0.7, help="Image HSV-Saturation augmentation fraction")
     parser.add_argument("--hsv-v", "--hsv_v", dest="hsv_v", type=float, default=0.4, help="Image HSV-Value augmentation fraction")
-    parser.add_argument("--max-det", "--max_det", dest="max_det", type=int, default=1000, help="Maximum detections per image")
+    parser.add_argument("--max-det", "--max_det", dest="max_det", type=int, default=300, help="Maximum detections per image")
     parser.add_argument("--device", default="0", help="Computing device (e.g., '0' for GPU 0, or 'cpu')")
     parser.add_argument("--workers", type=int, default=8, help="Number of dataloader workers")
     parser.add_argument("--project", type=str, default=None, help="Save project directory")
@@ -73,6 +73,16 @@ def main():
 
     print(f"[INFO] Initializing model: {args.model}")
     model = YOLO(args.model)
+
+    # Transfer pretrained backbone weights when training custom YAML architectures
+    model_name = Path(args.model).name
+    if  model_name.endswith(".yaml") and "-p2" in model_name:
+        base_weight = model_name.replace("-p2.yaml", ".pt")
+        print(f"[INFO] Loading pretrained backbone weights from {base_weight}...")
+        try:
+            model.load(base_weight)
+        except Exception as e:
+            print(f"[WARNING] Could not automatically load {base_weight}: {e}")
 
     print(f"[INFO] Starting training on dataset: {data_path}")
     model.train(**train_kwargs)
