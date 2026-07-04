@@ -1,0 +1,21 @@
+# Core Deep Learning & Detection Backend
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0
+
+# Computer Vision & Image Processing
+opencv-python>=4.7.0
+numpy>=1.22.0
+Pillow>=9.0.0
+
+# Configuration & Utilities
+pyyaml>=6.0
+
+# Optional / Specialized Dependencies
+# TrackEval: Required for computing HOTA, CLEAR, and Identity metrics in eval_visdrone.py
+# Uncomment below or install via git: pip install git+https://github.com/JonathonLuiten/TrackEval.git
+# trackeval>=1.0.0
+
+# NVIDIA TensorRT: Required for hardware-accelerated FP16/INT8 export and inference
+# Install via NVIDIA PyPI channels or SDK if using GPU acceleration:
+# tensorrt>=8.5.0

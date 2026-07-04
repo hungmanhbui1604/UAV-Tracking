@@ -1,6 +1,7 @@
 __pycache__/
 datasets/
 runs/
+vis_output/
 *.pt
 *.zip
 *.code-workspace
