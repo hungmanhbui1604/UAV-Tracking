@@ -3,3 +3,5 @@ datasets/
 runs/
 *.pt
 *.zip
+*.code-workspace
+*.json

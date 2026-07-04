@@ -1,9 +1,0 @@
-"lr": 0.001,
-"cos_lr": True,
-"close_mosaic": 15,
-"scale": 0.35,
-"degrees": 5.0,
-"hsv_s": 0.50,
-"hsv_v": 0.30,
-
-python3 train_detect.py --lr0 0.001 --cos-lr --close-mosaic 15 --scale 0.35 --degrees 5.0 --hsv-s 0.50 --hsv-v 0.30

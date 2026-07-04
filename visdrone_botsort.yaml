@@ -1,0 +1,30 @@
+# Ultralytics BoT-SORT configuration for VisDrone aerial MOT.
+# IMPORTANT: call model.track(..., conf=0.10, iou=0.60, tracker=<this file>)
+# so detections in [0.10, 0.25) reach the second association stage.
+
+tracker_type: botsort
+
+# Two-stage association thresholds
+track_high_thresh: 0.25
+track_low_thresh: 0.10
+
+# Do not initialize a new trajectory from weak detections.
+new_track_thresh: 0.35
+
+# Initial baseline: about 1 second at 25-30 fps. Test 45 or 60 only after
+# measuring whether longer memory improves AssA/IDF1 without increasing IDS.
+track_buffer: 30
+
+# Higher values make matching more lenient in Ultralytics.
+match_thresh: 0.80
+fuse_score: True
+
+# Camera-motion compensation for moving aerial footage.
+gmc_method: sparseOptFlow
+
+# ReID is disabled initially because many VisDrone objects are too small for
+# reliable appearance embeddings. These thresholds are inactive while false.
+proximity_thresh: 0.50
+appearance_thresh: 0.80
+with_reid: False
+model: auto
